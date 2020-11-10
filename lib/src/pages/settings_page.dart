@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class EditarPage extends StatefulWidget {
+class SettingsPage extends StatefulWidget {
   @override
-  _EditarPageState createState() => _EditarPageState();
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _EditarPageState extends State<EditarPage> {
+class _SettingsPageState extends State<SettingsPage> {
   String _nombre = "";
   String _email = "";
   String _fecha = "";
@@ -20,7 +20,7 @@ class _EditarPageState extends State<EditarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Editar Registro"),
+        title: Text("Settings"),
       ),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),

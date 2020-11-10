@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class InputPage extends StatefulWidget {
+DateTime now = DateTime.now();
+String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
+
+class NuevoRegistroPage extends StatefulWidget {
   @override
-  _InputPageState createState() => _InputPageState();
+  _NuevoRegistroPageState createState() => _NuevoRegistroPageState();
 }
 
-class _InputPageState extends State<InputPage> {
+class _NuevoRegistroPageState extends State<NuevoRegistroPage> {
   String _nombre = "";
   String _email = "";
   String _fecha = "";
@@ -20,9 +24,20 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Inputs de texto"),
+        title: Text("Nuevo registro"),
       ),
-      body: ListView(
+      body: Column(
+        children: <Widget>[
+          _crearCabecera(),
+          Divider(thickness: 6.0,),
+          _crearGeneral(),
+        ],
+      ),
+    );
+  }
+
+  /* 
+  ListView(
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         children: <Widget>[
           _crearInput(),
@@ -38,9 +53,7 @@ class _InputPageState extends State<InputPage> {
           _crearPersona(),
         ],
       ),
-    );
-  }
-
+  */
   Widget _crearInput() {
     return TextField(
       textCapitalization: TextCapitalization.sentences,
@@ -162,5 +175,43 @@ class _InputPageState extends State<InputPage> {
       subtitle: Text("Email: $_email"),
       trailing: Text(_opcionSeleccionada),
     );
+  }
+
+  Widget _crearCabecera() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text("Baza-1 (Baza, Granada)"),
+                    SizedBox(width: 40.0),
+                    Text(formattedDate),
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Text("Excavador: Francisco Javier Luengo"),
+              ],
+            ),
+          ),
+        ],
+      )
+    );
+  }
+
+  Widget _crearGeneral() {
+    return Container(
+        child: Row(
+      children: [
+        Text("Cuadro1"),
+        
+        Text("Cuadro"),
+      
+
+      ],
+    ));
   }
 }

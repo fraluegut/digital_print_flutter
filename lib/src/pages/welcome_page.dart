@@ -1,5 +1,4 @@
 import 'package:digital_print/src/pages/alert_page.dart';
-import 'package:digital_print/src/pages/home_page.dart';
 import 'package:digital_print/src/pages/home_temp.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +16,7 @@ class WelcomePage extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 5.0),
+                padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 5.0),
               ),
               Image(image: new AssetImage('assets/images/digital_print.png')),
               Row(
