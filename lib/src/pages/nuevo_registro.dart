@@ -4,6 +4,15 @@ import 'package:intl/intl.dart';
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
 
+
+
+
+
+
+
+
+
+
 class NuevoRegistroPage extends StatefulWidget {
   @override
   _NuevoRegistroPageState createState() => _NuevoRegistroPageState();
@@ -206,8 +215,7 @@ class _NuevoRegistroPageState extends State<NuevoRegistroPage> {
     return Container(
         child: Row(
       children: [
-        Text("Cuadro1"),
-        
+        FormField(builder: null),
         Text("Cuadro"),
       
 

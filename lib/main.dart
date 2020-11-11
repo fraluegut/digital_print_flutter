@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Componentes App',
+      title: 'Digital Print App',
       debugShowCheckedModeBanner: false,
       
       supportedLocales: [
