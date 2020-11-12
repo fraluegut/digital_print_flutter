@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart';
 
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
@@ -21,7 +21,11 @@ class _InputPageState extends State<InputPage> {
 
   List _poderes = ["Volar", "Rayos X", "Super Aliento", "Super"];
 
-  TextEditingController _inputFieldDateController = new TextEditingController();
+  TextEditingController etdato1 = new TextEditingController();
+  TextEditingController etdato2 = new TextEditingController();
+
+  String ndato1 = "";
+  String ndato2 = "";
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +34,19 @@ class _InputPageState extends State<InputPage> {
         title: Text("Nuevo registro"),
       ),
       body: PageView(
-        children: <Widget>[_localizacion(), _identificacion(), _restauracion(context)],
+        children: <Widget>[
+          _localizacion(),
+          _identificacion(),
+          _restauracion(context)
+        ],
       ),
     );
   }
 }
 
-Widget _crearInputGeneral(String texto) {
+Widget _crearInputGeneral(
+  String texto,
+) {
   return TextField(
     textCapitalization: TextCapitalization.sentences,
     decoration: InputDecoration(
@@ -220,24 +230,6 @@ Widget _restauracion(context) {
                       child: Icon(Icons.photo_camera),
                       onPressed: () {
                         print("Hola");
-                        _makeGetRequest() async {
-                          // make GET request
-                          String url =
-                              'https://jsonplaceholder.typicode.com/posts/1';
-                          Response response = await get(url);
-                          // sample info available in response
-                          int statusCode = response.statusCode;
-                          Map<String, String> headers = response.headers;
-                          String contentType = headers['content-type'];
-                          String json = response.body;
-                          print(statusCode);
-                          print(json);
-
-                          // TODO convert json to object...
-                        }
-
-                        ;
-                        print(_makeGetRequest());
                         print("Hola2");
                         _makePostRequest() async {
                           // set up POST request arguments
@@ -246,7 +238,7 @@ Widget _restauracion(context) {
                             "Content-type": "application/json"
                           };
                           String json =
-                              '{"title": "Hello", "description": "from Flutter"}';
+                              '{"title": $Text.text, "description": "from Flutter"}';
                           // make POST request
                           Response response =
                               await post(url, headers: headers, body: json);
@@ -263,9 +255,8 @@ Widget _restauracion(context) {
                           // }
                         }
 
-                        ;print(_makePostRequest())
-
                         ;
+                        print(_makePostRequest());
                       })
                 ],
               ),
@@ -288,14 +279,30 @@ Widget _restauracion(context) {
                         child: Icon(Icons.print, size: 35.0), onPressed: () {}),
                     SizedBox(height: 5.0),
                     FloatingActionButton(
-                        child: Icon(Icons.send, size: 35.0), onPressed: () {
-                        
-                        })
+                      child: Icon(Icons.send, size: 35.0),
+                      onPressed: _scanQR,
+                    ),
                   ]),
               fit: FlexFit.tight),
           SizedBox(width: 10.0),
         ])),
       ]);
+}
+
+_scanQR() async {
+  String futureString = "";
+
+  try {
+    futureString = await BarcodeScanner.scan();
+  } catch (e) {
+    futureString = e.toString();
+  }
+
+  print("Future String: $futureString");
+
+  if (futureString != null) {
+    print("Tenemos información");
+  }
 }
 
 Widget _crearCabecera() {
@@ -337,6 +344,4 @@ Widget _crearCabecera() {
 
     ;
   }
-
-  
 }

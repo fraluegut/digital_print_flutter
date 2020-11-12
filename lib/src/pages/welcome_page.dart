@@ -1,5 +1,6 @@
 import 'package:digital_print/src/pages/alert_page.dart';
 import 'package:digital_print/src/pages/home_temp.dart';
+import 'package:digital_print/src/pages/settings_user.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -59,11 +60,11 @@ class WelcomePage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AlertPage(),
+                                  builder: (context) => SetingsUserPage(),
                             ));
                           },
                           child: Text(
-                            'Créditos',
+                            'Ajustes',
                             style: new TextStyle(
                               fontSize: 20.0,
                               color: Colors.black,
