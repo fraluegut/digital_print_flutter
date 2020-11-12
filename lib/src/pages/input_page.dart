@@ -14,28 +14,11 @@ class InputPage extends StatefulWidget {
 }
 
 Elemento elemento = new Elemento();
-
+final int valor = 0;
 final formKey = GlobalKey<FormState>();
-final String _cuadro = "";
 
 class _InputPageState extends State<InputPage> {
   // Valores de localización:
-  String _cuadro = "";
-  String _nivel_Estrat = "";
-  int _uuee = 0;
-
-  int _localizacion_X = 1;
-  int _localizacion_Y = 0;
-  int _localizacion_Zs = 0;
-  int _localizacion_Zi = 0;
-
-  int _localizacion_RotX = 0;
-  int _localizacion_RotY = 0;
-  int _localizacion_RotZ = 0;
-
-  int _localizacion_Largo = 0;
-  int _localizacion_Ancho = 0;
-  int _localizacion_Espesor = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -168,58 +151,62 @@ Widget _identificacion() {
 }
 
 Widget _localizacion_data() {
-  return Row(children: <Widget>[
-    Flexible(
-        flex: 1,
-        child: Container(
-            child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    _crearInput("X", TextInputType.number, elemento.locationX),
-                    SizedBox(height: 5.0),
-                    _crearInput("Y", TextInputType.number, elemento.locationY),
-                    SizedBox(height: 5.0),
-                    _crearInput(
-                        "Zs", TextInputType.number, elemento.locationZs),
-                    SizedBox(height: 5.0),
-                    _crearInput(
-                        "Zi", TextInputType.number, elemento.locationZi),
-                  ],
-                ))),
-        fit: FlexFit.tight),
-    SizedBox(width: 10.0),
-    Flexible(
-        flex: 1,
-        child: Column(
-          children: [
-            _coordAprox(),
-            SizedBox(height: 5.0),
-            _crearInputGeneral("Rot. X"),
-            SizedBox(height: 5.0),
-            _crearInputGeneral("Rot. Y"),
-            SizedBox(height: 5.0),
-            _crearInputGeneral("Rot. Z")
-          ],
-        ),
-        fit: FlexFit.tight),
-    SizedBox(width: 10.0),
-    Flexible(
-        flex: 1,
-        child: Column(
-          children: [
-            SizedBox(height: 22.5),
-            Text("Dimensiones"),
-            SizedBox(height: 25.0),
-            _crearInputGeneral("Largo"),
-            SizedBox(height: 5.0),
-            _crearInputGeneral("Ancho"),
-            SizedBox(height: 5.0),
-            _crearInputGeneral("Espesor")
-          ],
-        ),
-        fit: FlexFit.tight)
-  ]);
+  return 
+    Form(
+      key: formKey,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Flexible(
+              flex: 1,
+              child: Container(
+                  child: Column(
+                children: [
+                  _crearInputlocalizacionX("X", TextInputType.number),
+                  SizedBox(height: 5.0),
+                  _crearInputlocalizacionY("Y", TextInputType.number),
+                  SizedBox(height: 5.0),
+                  _crearInputlocalizacionZs("Zs", TextInputType.number),
+                  SizedBox(height: 5.0),
+                  _crearInputlocalizacionZi("Zi", TextInputType.number),
+                ],
+              ))),
+          SizedBox(width: 10.0),
+          Flexible(
+              flex: 1,
+              child: Column(
+                children: [
+                  _coordAprox(),
+                  SizedBox(height: 5.0),
+                  _crearInputRotX("Rot X", TextInputType.number),
+                  SizedBox(height: 5.0),
+                  _crearInputRotY("Rot Y", TextInputType.number),
+                  SizedBox(height: 5.0),
+                  _crearInputRotZ("Rot Z", TextInputType.number),
+                ],
+              ),
+              fit: FlexFit.tight),
+          SizedBox(width: 10.0),
+          Flexible(
+              flex: 1,
+              child: Column(
+                children: [
+                  SizedBox(height: 22.5),
+                  Text("Dimensiones"),
+                  SizedBox(height: 25.0),
+                  _crearInputLargo("Largo", TextInputType.number),
+                  SizedBox(height: 5.0),
+                  _crearInputAncho("Ancho", TextInputType.number),
+                  SizedBox(height: 5.0),
+                  _crearInputEspesor("Espesor", TextInputType.number),
+                ],
+              ),
+              fit: FlexFit.tight)
+        ]
+    ),
+  );
+  
+
 }
 
 Widget _restauracion(context) {
@@ -262,7 +249,7 @@ Widget _restauracion(context) {
                       child: Icon(Icons.photo_camera),
                       onPressed: () {
                         print("Hola");
-                        print(elemento.locationX);
+                        print(elemento.localizacionX);
                       })
                 ],
               ),
@@ -334,6 +321,153 @@ Widget _crearInput(String texto, TextInputType tipo, int valor) {
   );
 }
 
+Widget _crearInputlocalizacionX(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.localizacionX = int.parse(value),
+  );
+}
+
+Widget _crearInputlocalizacionY(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.localizacionY = int.parse(value),
+    validator: (value) {
+      if (int.parse(value) > 100) {
+        return "El valor Y no puede ser mayor a 100";
+      } else {
+        return null;
+      }
+    },
+  );
+}
+
+Widget _crearInputlocalizacionZs(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.localizacionZs = int.parse(value),
+  );
+}
+
+Widget _crearInputlocalizacionZi(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.localizacionZi = int.parse(value),
+  );
+}
+
+Widget _crearInputRotX(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.rotX = int.parse(value),
+  );
+}
+
+Widget _crearInputRotY(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.rotY = int.parse(value),
+  );
+}
+
+Widget _crearInputRotZ(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.rotZ = int.parse(value),
+  );
+}
+
+Widget _crearInputLargo(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.largo  = int.parse(value),
+  );
+}
+
+Widget _crearInputAncho(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.ancho  = int.parse(value),
+  );
+}
+
+Widget _crearInputEspesor(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.espesor  = int.parse(value),
+  );
+}
+
+
+
+
+
+
+
 Widget _cuadro_nivel_uuee() {
   return IntrinsicHeight(
       child: Row(children: <Widget>[
@@ -348,7 +482,8 @@ Widget _cuadro_nivel_uuee() {
 
 Widget _crearLocalizacion_X() {
   return TextFormField(
-    keyboardType: TextInputType.number,    decoration: InputDecoration(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
 
       hintText: "Xs",
@@ -390,15 +525,17 @@ _scanQR() async {
 void _submit() {
   //formKey.currentState.validate();
   //formKey.currentState.save();
-  print(elemento.locationX);
+  print(elemento.localizacionX);
 }
 
 _makePostRequest() async {
+  formKey.currentState.validate();
+  formKey.currentState.save();
   // set up POST request arguments 'http://185.254.206.143:5001/registrobaza';
   String url = 'http://192.168.1.116:5000/registrobaza';
   Map<String, String> headers = {"Content-type": "application/json"};
   String json =
-      '{"ancho": 3, "consolidacion": "3","coord_aprox": 3,"cuadro": "3", "elemento": "3","especie": "3", "espesor": 3, "estado": "3",  "excavador": "3",    "extraccion": 3,    "familia": "3",    "foto": 3,    "genero": "3","largo": 3,    "localizacionX": 3,    "localizacionY": 3,    "localizacionZi": 3,    "localizacionZs": 3,    "material": "3",    "nivel": "3",    "observaciones_identificacion": "3",    "observaciones_restauracion": "3",    "registro": "2020-11-12T16:45:43",    "rotX": 3,    "rotY": 3,    "rotZ": 3,    "talla": "3",    "uuee": "3"}';
+      '{"ancho": ${elemento.ancho}, "consolidacion": 0,"coord_aprox": 1,"cuadro": "${elemento.cuadro}", "elemento": "${elemento.elemento}","especie": "${elemento.especie}", "espesor": ${elemento.espesor}, "estado": "${elemento.estado}",  "excavador": "${elemento.excavador}",    "extraccion": 0,    "familia": "${elemento.familia}",    "foto": 0,    "genero": "${elemento.genero}","largo": ${elemento.largo},    "localizacionX": ${elemento.localizacionX},    "localizacionY": ${elemento.localizacionY},    "localizacionZi": ${elemento.localizacionZi},    "localizacionZs": ${elemento.localizacionZs},    "material": "${elemento.material}",    "nivel": "${elemento.nivel}",    "observaciones_identificacion": "${elemento.observacionesIdentificacion}",    "observaciones_restauracion": "${elemento.observacionesRestauracion}",   "rotX": ${elemento.rotX},    "rotY": ${elemento.rotY},    "rotZ": ${elemento.rotZ},    "talla": "${elemento.talla}",    "uuee": 2}';
   //'{"excavador": "javi", "cuadro": "A2","nivel": "2","uuee": "2","localizacionX": 2,"localizacionY": 2,"localizacionZs": 2,"localizacionZi": 2,"largo": 2,"ancho": 2,"espesor": 2,"material": "prueba2"}';
   // make POST request
   Response response = await post(url, headers: headers, body: json);
@@ -408,7 +545,9 @@ _makePostRequest() async {
   // this API passes back the id of the new item added to the body
   String body = response.body;
   print("Send");
-  print(response); //print(elemento.locationX);
+  print(response.body);
+  print(json);
+  print(response.statusCode); //print(elemento.locationX);
 }
 
 /*
