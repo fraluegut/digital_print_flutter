@@ -86,13 +86,10 @@ Widget _localizacion() {
       children: <Widget>[
         _crearCabecera(),
         Divider(thickness: 6.0),
-        _cuadro_nivel_uuee(),
+        //_cuadro_nivel_uuee(),
         Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
-        Text("Localización",
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 15,
-            ),
+        Text("Datos Generales",
+            style: TextStyle(color: Colors.grey, fontSize: 15),
             textAlign: TextAlign.left),
         Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
         IntrinsicHeight(child: _localizacion_data()),
@@ -151,62 +148,68 @@ Widget _identificacion() {
 }
 
 Widget _localizacion_data() {
-  return 
-    Form(
+  return Form(
       key: formKey,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Flexible(
-              flex: 1,
-              child: Container(
+      child: Column(
+        children: [
+        IntrinsicHeight(
+          child: _cuadro_nivel_uuee(),
+        ),
+        Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+        Text("Localización",
+            style: TextStyle(color: Colors.grey, fontSize: 15),
+            textAlign: TextAlign.left),
+        Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Flexible(
+                  flex: 1,
+                  child: Container(
+                      child: Column(
+                    children: [
+                      _crearInputlocalizacionX("X", TextInputType.number),
+                      SizedBox(height: 5.0),
+                      _crearInputlocalizacionY("Y", TextInputType.number),
+                      SizedBox(height: 5.0),
+                      _crearInputlocalizacionZs("Zs", TextInputType.number),
+                      SizedBox(height: 5.0),
+                      _crearInputlocalizacionZi("Zi", TextInputType.number),
+                    ],
+                  ))),
+              SizedBox(width: 10.0),
+              Flexible(
+                  flex: 1,
                   child: Column(
-                children: [
-                  _crearInputlocalizacionX("X", TextInputType.number),
-                  SizedBox(height: 5.0),
-                  _crearInputlocalizacionY("Y", TextInputType.number),
-                  SizedBox(height: 5.0),
-                  _crearInputlocalizacionZs("Zs", TextInputType.number),
-                  SizedBox(height: 5.0),
-                  _crearInputlocalizacionZi("Zi", TextInputType.number),
-                ],
-              ))),
-          SizedBox(width: 10.0),
-          Flexible(
-              flex: 1,
-              child: Column(
-                children: [
-                  _coordAprox(),
-                  SizedBox(height: 5.0),
-                  _crearInputRotX("Rot X", TextInputType.number),
-                  SizedBox(height: 5.0),
-                  _crearInputRotY("Rot Y", TextInputType.number),
-                  SizedBox(height: 5.0),
-                  _crearInputRotZ("Rot Z", TextInputType.number),
-                ],
-              ),
-              fit: FlexFit.tight),
-          SizedBox(width: 10.0),
-          Flexible(
-              flex: 1,
-              child: Column(
-                children: [
-                  SizedBox(height: 22.5),
-                  Text("Dimensiones"),
-                  SizedBox(height: 25.0),
-                  _crearInputLargo("Largo", TextInputType.number),
-                  SizedBox(height: 5.0),
-                  _crearInputAncho("Ancho", TextInputType.number),
-                  SizedBox(height: 5.0),
-                  _crearInputEspesor("Espesor", TextInputType.number),
-                ],
-              ),
-              fit: FlexFit.tight)
-        ]
-    ),
-  );
-  
-
+                    children: [
+                      _coordAprox(),
+                      SizedBox(height: 5.0),
+                      _crearInputRotX("Rot X", TextInputType.number),
+                      SizedBox(height: 5.0),
+                      _crearInputRotY("Rot Y", TextInputType.number),
+                      SizedBox(height: 5.0),
+                      _crearInputRotZ("Rot Z", TextInputType.number),
+                    ],
+                  ),
+                  fit: FlexFit.tight),
+              SizedBox(width: 10.0),
+              Flexible(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 22.5),
+                      Text("Dimensiones"),
+                      SizedBox(height: 25.0),
+                      _crearInputLargo("Largo", TextInputType.number),
+                      SizedBox(height: 5.0),
+                      _crearInputAncho("Ancho", TextInputType.number),
+                      SizedBox(height: 5.0),
+                      _crearInputEspesor("Espesor", TextInputType.number),
+                    ],
+                  ),
+                  fit: FlexFit.tight)
+            ]),
+        ]));
 }
 
 Widget _restauracion(context) {
@@ -432,7 +435,7 @@ Widget _crearInputLargo(String texto, TextInputType tipo) {
       labelText: texto,
       //helperText: texto,
     ),
-    onSaved: (value) => elemento.largo  = int.parse(value),
+    onSaved: (value) => elemento.largo = int.parse(value),
   );
 }
 
@@ -445,7 +448,7 @@ Widget _crearInputAncho(String texto, TextInputType tipo) {
       labelText: texto,
       //helperText: texto,
     ),
-    onSaved: (value) => elemento.ancho  = int.parse(value),
+    onSaved: (value) => elemento.ancho = int.parse(value),
   );
 }
 
@@ -458,26 +461,63 @@ Widget _crearInputEspesor(String texto, TextInputType tipo) {
       labelText: texto,
       //helperText: texto,
     ),
-    onSaved: (value) => elemento.espesor  = int.parse(value),
+    onSaved: (value) => elemento.espesor = int.parse(value),
   );
 }
-
-
-
-
-
 
 
 Widget _cuadro_nivel_uuee() {
   return IntrinsicHeight(
       child: Row(children: <Widget>[
-    Flexible(flex: 1, child: _crearInputGeneral("Cuadro"), fit: FlexFit.tight),
+    Flexible(flex: 1, child: _crearInputCuadro("Cuadro", TextInputType.text),
+     fit: FlexFit.tight),
     SizedBox(width: 10.0),
     Flexible(
-        flex: 1, child: _crearInputGeneral("Nivel estr."), fit: FlexFit.tight),
+        flex: 1, child: _crearInputNivel("Nivel estr.", TextInputType.text), fit: FlexFit.tight),
     SizedBox(width: 10.0),
-    Flexible(flex: 1, child: _crearInputGeneral("UU.EE."), fit: FlexFit.tight)
+    Flexible(flex: 1, child:_crearInputUUEE("UU.EE.", TextInputType.text), fit: FlexFit.tight)
   ]));
+}
+
+
+Widget _crearInputCuadro(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.cuadro = value,
+  );
+}
+
+
+Widget _crearInputNivel(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.nivel = value,
+  );
+}
+
+Widget _crearInputUUEE(String texto, TextInputType tipo) {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+      hintText: texto,
+      labelText: texto,
+      //helperText: texto,
+    ),
+    onSaved: (value) => elemento.uuee = value,
+  );
 }
 
 Widget _crearLocalizacion_X() {
@@ -535,7 +575,7 @@ _makePostRequest() async {
   String url = 'http://192.168.1.116:5000/registrobaza';
   Map<String, String> headers = {"Content-type": "application/json"};
   String json =
-      '{"ancho": ${elemento.ancho}, "consolidacion": 0,"coord_aprox": 1,"cuadro": "${elemento.cuadro}", "elemento": "${elemento.elemento}","especie": "${elemento.especie}", "espesor": ${elemento.espesor}, "estado": "${elemento.estado}",  "excavador": "${elemento.excavador}",    "extraccion": 0,    "familia": "${elemento.familia}",    "foto": 0,    "genero": "${elemento.genero}","largo": ${elemento.largo},    "localizacionX": ${elemento.localizacionX},    "localizacionY": ${elemento.localizacionY},    "localizacionZi": ${elemento.localizacionZi},    "localizacionZs": ${elemento.localizacionZs},    "material": "${elemento.material}",    "nivel": "${elemento.nivel}",    "observaciones_identificacion": "${elemento.observacionesIdentificacion}",    "observaciones_restauracion": "${elemento.observacionesRestauracion}",   "rotX": ${elemento.rotX},    "rotY": ${elemento.rotY},    "rotZ": ${elemento.rotZ},    "talla": "${elemento.talla}",    "uuee": 2}';
+      '{"ancho": ${elemento.ancho}, "consolidacion": 0,"coord_aprox": 1,"cuadro": ${elemento.cuadro}, "elemento": "${elemento.elemento}","especie": "${elemento.especie}", "espesor": ${elemento.espesor}, "estado": "${elemento.estado}",  "excavador": "${elemento.excavador}",    "extraccion": 0,    "familia": "${elemento.familia}",    "foto": 0,    "genero": "${elemento.genero}","largo": ${elemento.largo},    "localizacionX": ${elemento.localizacionX},    "localizacionY": ${elemento.localizacionY},    "localizacionZi": ${elemento.localizacionZi},    "localizacionZs": ${elemento.localizacionZs},    "material": "${elemento.material}",    "nivel": ${elemento.nivel},    "observaciones_identificacion": "${elemento.observacionesIdentificacion}",    "observaciones_restauracion": "${elemento.observacionesRestauracion}",   "rotX": ${elemento.rotX},    "rotY": ${elemento.rotY},    "rotZ": ${elemento.rotZ},    "talla": "${elemento.talla}",    "uuee": ${elemento.uuee}}';
   //'{"excavador": "javi", "cuadro": "A2","nivel": "2","uuee": "2","localizacionX": 2,"localizacionY": 2,"localizacionZs": 2,"localizacionZi": 2,"largo": 2,"ancho": 2,"espesor": 2,"material": "prueba2"}';
   // make POST request
   Response response = await post(url, headers: headers, body: json);
