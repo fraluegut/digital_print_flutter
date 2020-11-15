@@ -1,3 +1,4 @@
+/*
 import 'package:digital_print/src/models/elemento.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -765,4 +766,5 @@ _makePostRequest() async {
   print(elemento.locationX);
  
   }
+  */
   */

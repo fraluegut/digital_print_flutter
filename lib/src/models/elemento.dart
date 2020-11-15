@@ -9,69 +9,70 @@ Elemento elementoFromJson(String str) => Elemento.fromJson(json.decode(str));
 String elementoToJson(Elemento data) => json.encode(data.toJson());
 
 class Elemento {
-    Elemento({
-        this.ancho,
-        this.consolidacion,
-        this.coordAprox,
-        this.cuadro,
-        this.elemento,
-        this.especie,
-        this.espesor,
-        this.estado,
-        this.excavador,
-        this.extraccion,
-        this.familia,
-        this.foto,
-        this.genero,
-        this.id,
-        this.largo,
-        this.localizacionX,
-        this.localizacionY,
-        this.localizacionZi,
-        this.localizacionZs,
-        this.material,
-        this.nivel,
-        this.observacionesIdentificacion,
-        this.observacionesRestauracion,
-        this.registro,
-        this.rotX,
-        this.rotY,
-        this.rotZ,
-        this.talla,
-        this.uuee,
-    });
+  Elemento({
+    this.ancho,
+    this.consolidacion,
+    this.coordAprox,
+    this.cuadro,
+    this.elemento,
+    this.especie,
+    this.espesor,
+    this.estado,
+    this.excavador,
+    this.extraccion,
+    this.familia,
+    this.foto,
+    this.genero,
+    this.id,
+    this.largo,
+    this.localizacionX,
+    this.localizacionY,
+    this.localizacionZi,
+    this.localizacionZs,
+    this.material,
+    this.nivel,
+    this.observacionesIdentificacion,
+    this.observacionesRestauracion,
+    this.registro,
+    this.rotX,
+    this.rotY,
+    this.rotZ,
+    this.talla,
+    this.uuee,
+  });
 
-    int ancho;
-    String consolidacion;
-    int coordAprox;
-    String cuadro;
-    String elemento;
-    String especie;
-    int espesor;
-    String estado;
-    String excavador;
-    int extraccion;
-    String familia;
-    int foto;
-    String genero;
-    int id;
-    int largo;
-    int localizacionX = 0;
-    int localizacionY;
-    int localizacionZi;
-    int localizacionZs;
-    String material;
-    String nivel;
-    String observacionesIdentificacion;
-    String observacionesRestauracion;
-    DateTime registro;
-    int rotX;
-    int rotY;
-    int rotZ;
-    String talla;
-    String uuee;
+  int observaciones_restauracionancho;
+  String consolidacion;
+  int coordAprox;
+  String cuadro;
+  String elemento;
+  String especie;
+  int espesor;
+  String estado;
+  String excavador;
+  int extraccion;
+  String familia;
+  int ancho;
+  int foto;
+  String genero;
+  int id;
+  int largo;
+  int localizacionX = 0;
+  int localizacionY;
+  int localizacionZi;
+  int localizacionZs;
+  String material;
+  String nivel;
+  String observacionesIdentificacion;
+  String observacionesRestauracion;
+  DateTime registro;
+  int rotX;
+  int rotY;
+  int rotZ;
+  String talla;
+  String uuee;
 
-    factory Elemento.fromJson(Map<String, dynamic> json) => Elemento(
+  factory Elemento.fromJson(Map<String, dynamic> json) => Elemento(
         ancho: json["ancho"],
         consolidacion: json["consolidacion"],
         coordAprox: json["coord_aprox"],
@@ -101,9 +102,9 @@ class Elemento {
         rotZ: json["rotZ"],
         talla: json["talla"],
         uuee: json["uuee"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "ancho": ancho,
         "consolidacion": consolidacion,
         "coord_aprox": coordAprox,
@@ -133,5 +134,5 @@ class Elemento {
         "rotZ": rotZ,
         "talla": talla,
         "uuee": uuee,
-    };
+      };
 }
