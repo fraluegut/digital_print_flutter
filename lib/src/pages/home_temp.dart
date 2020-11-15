@@ -2,7 +2,10 @@ import 'package:digital_print/src/pages/alert_page.dart';
 import 'package:digital_print/src/pages/compass.dart';
 import 'package:digital_print/src/pages/consultar_registro.dart';
 import 'package:digital_print/src/pages/editar_registro.dart';
+import 'package:digital_print/src/pages/get_page.dart';
+import 'package:digital_print/src/pages/gethttp.dart';
 import 'package:digital_print/src/pages/input_page.dart';
+import 'package:digital_print/src/pages/internet.dart';
 
 import 'package:digital_print/src/pages/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +23,6 @@ class HomePageTemp extends StatelessWidget {
         padding: EdgeInsets.all(20.0),
         children: <Widget>[
           _cardTipo1(context),
-          SizedBox(height: 30.0),
-          _cardTipo2(context),
           SizedBox(height: 30.0),
           _cardTipo3(context),
           SizedBox(height: 30.0),
@@ -41,6 +42,7 @@ class HomePageTemp extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: Column(
           children: <Widget>[
+            SizedBox(height: 20.0),
             ListTile(
               leading: Icon(Icons.add, color: Colors.blue, size: 50.0),
               title: Text("Nuevo Registro"),
@@ -70,43 +72,7 @@ class HomePageTemp extends StatelessWidget {
         ));
   }
 
-  Widget _cardTipo2(BuildContext context) {
-    return Card(
-      elevation: 10.0,
-      shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-      child: Column(
-      children: <Widget>[
-        ListTile(
-          leading: Icon(Icons.edit, color: Colors.blue, size: 50.0),
-          title: Text("Editar Registro"),
-          subtitle: Text(
-            "Accede aquí para editar un registro"),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            FlatButton(
-              child: Text("Información"),
-              onPressed: () {Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => AlertPage(),
-              ));},
-            ),
-            FlatButton(
-              child: Text("Entrar"),
-              onPressed: () {Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => EditarPage(),
-              ));},
-            )
-          ],
-          )
-     ],
-    ));
-  }
+  
   
   Widget _cardTipo3(BuildContext context) {
     return Card(
@@ -115,11 +81,12 @@ class HomePageTemp extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: Column(
           children: <Widget>[
+            SizedBox(height: 20.0),
             ListTile(
               leading: Icon(Icons.search, color: Colors.blue, size: 50.0),
-              title: Text("Consultar Registro"),
+              title: Text("Registros"),
               subtitle: Text(
-                  "Accede aquí para consultar un registro"),
+                  "Accede aquí para consultar, editar, eliminar o imprimir un registro"),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -137,7 +104,7 @@ class HomePageTemp extends StatelessWidget {
                   onPressed: () {Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ConsultarPage(),
+                    builder: (context) => StarWarsData(),
               ));},
                 )
               ],
@@ -153,6 +120,7 @@ class HomePageTemp extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: Column(
           children: <Widget>[
+            SizedBox(height: 20.0),
             ListTile(
               leading: Icon(Icons.settings, color: Colors.blue, size: 50.0),
               title: Text("Configurar Proyecto"),

@@ -2,8 +2,7 @@ import 'package:digital_print/src/models/elemento.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart';
-import 'input_page_old.dart';
-import 'package:barcode_scan/barcode_scan.dart';
+
 
 // Variables
 
@@ -233,7 +232,7 @@ _makePostRequest() async {
   formKey.currentState.validate();
   formKey.currentState.save();
   // set up POST request arguments 'http://185.254.206.143:5001/registrobaza';
-  String url = 'http://192.168.1.116:5000/registrobaza';
+  String url = 'http://185.254.206.143:5000/registrobaza';
   Map<String, String> headers = {"Content-type": "application/json"};
   String json = //'{"excavador": "Javier","cuadro": "${elemento.cuadro}",  "nivel": "${elemento.nivel}","uuee": ${elemento.uuee},  localizacionX": ${elemento.localizacionX}, "localizacionY":${elemento.localizacionY},"localizacionZi": ${elemento.localizacionZi},"localizacionZs": ${elemento.localizacionZs}, "coord_aprox": 1,  "rotX": ${elemento.rotX}, "rotY": ${elemento.rotY}, "rotZ": ${elemento.rotZ},"largo": ${elemento.largo},"ancho": ${elemento.ancho},"espesor": ${elemento.espesor},"material": "${elemento.material}","elemento": "${elemento.elemento}", "observaciones_identificacion":" ${elemento.observacionesIdentificacion}","talla": "${elemento.talla}", "genero": "${elemento.genero}", "familia": "${elemento.familia}","especie": "${elemento.especie}","consolidacion": "${elemento.consolidacion}","estado":"${elemento.estado}","extraccion": "${elemento.extraccion}","foto": 0,"observaciones_restauracion": "${elemento.observacionesRestauracion}"}';
   '{"ancho": ${elemento.ancho}, "consolidacion": 1,"coord_aprox": 1,"cuadro": ${elemento.cuadro}, "elemento": ${elemento.elemento},"especie": ${elemento.especie}, "espesor": ${elemento.espesor}, "estado": ${elemento.estado},  "excavador": ${elemento.excavador},    "extraccion": 0,    "familia": ${elemento.familia},    "foto": 0,    "genero": ${elemento.genero},"largo": ${elemento.largo},    "localizacionX": ${elemento.localizacionX},    "localizacionY": ${elemento.localizacionY},    "localizacionZi": ${elemento.localizacionZi},    "localizacionZs": ${elemento.localizacionZs},    "material": "${elemento.material}",    "nivel": ${elemento.nivel},    "observaciones_identificacion": ${elemento.observacionesIdentificacion},    "observaciones_restauracion": ${elemento.observacionesRestauracion},   "rotX": ${elemento.rotX},    "rotY": ${elemento.rotY},    "rotZ": ${elemento.rotZ},    "talla": ${elemento.talla},    "uuee": ${elemento.uuee}}';
@@ -250,6 +249,7 @@ _makePostRequest() async {
   print(json);
   print(response.statusCode); //print(elemento.locationX);
 }
+
 
 
 
