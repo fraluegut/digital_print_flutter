@@ -1,4 +1,5 @@
 import 'package:digital_print/src/pages/alert_page.dart';
+import 'package:digital_print/src/pages/compass.dart';
 import 'package:digital_print/src/pages/consultar_registro.dart';
 import 'package:digital_print/src/pages/editar_registro.dart';
 import 'package:digital_print/src/pages/input_page.dart';
@@ -166,7 +167,7 @@ class HomePageTemp extends StatelessWidget {
                   onPressed: () {Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AlertPage(),
+                                  builder: (context) => Compass(),
                             ));},
                 ),
                 FlatButton(
